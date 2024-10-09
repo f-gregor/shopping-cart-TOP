@@ -5,6 +5,7 @@ import Root from "./routes/Root";
 import Cart from "./routes/Cart";
 import Products from "./routes/Products";
 import "./index.css";
+import { loader as productLoader } from "./routes/Products";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
       {
         path: "/products",
         element: <Products />,
+        loader: productLoader,
       },
       {
         path: "/products/:productId",

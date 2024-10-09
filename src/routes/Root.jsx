@@ -1,27 +1,27 @@
-// import { useState } from "react";
+import { useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 
 export default function Root() {
-  // const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState([]);
 
-  // function addToCart(product) {
-  //   let productAlreadyInCart = false;
+  function addToCart(product) {
+    let productAlreadyInCart = false;
 
-  //   const newCart = cart.map((item) => {
-  //     if (item.id === product.id) {
-  //       productAlreadyInCart = true;
-  //       return { ...item, quantity: item.quantity + 1 };
-  //     } else {
-  //       return item;
-  //     }
-  //   });
+    const newCart = cart.map((item) => {
+      if (item.id === product.id) {
+        productAlreadyInCart = true;
+        return { ...item, quantity: item.quantity + 1 };
+      } else {
+        return item;
+      }
+    });
 
-  //   if (!productAlreadyInCart) {
-  //     newCart.push({ ...product, quantity: 1 });
-  //   }
+    if (!productAlreadyInCart) {
+      newCart.push({ id: product.id, quantity: 1 });
+    }
 
-  //   setCart(newCart);
-  // }
+    setCart(newCart);
+  }
 
   return (
     <>
@@ -29,7 +29,7 @@ export default function Root() {
         <div className="navbar">
           <ul>
             <li>
-              <Link to={`/`}>FakeStore</Link>
+              <Link to={`/`}>ThriftShop</Link>
             </li>
             <li>
               <Link to={`/products`}>Products</Link>
@@ -51,7 +51,7 @@ export default function Root() {
         </div>
       </nav>
       <main>
-        <Outlet />
+        <Outlet context={{ cart, addToCart }} />
       </main>
       <footer></footer>
     </>
