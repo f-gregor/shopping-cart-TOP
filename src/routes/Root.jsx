@@ -4,32 +4,13 @@ import { Outlet, Link } from "react-router-dom";
 export default function Root() {
   const [cart, setCart] = useState([]);
 
-  function addToCart(product) {
-    let productAlreadyInCart = false;
-
-    const newCart = cart.map((item) => {
-      if (item.id === product.id) {
-        productAlreadyInCart = true;
-        return { ...item, quantity: item.quantity + 1 };
-      } else {
-        return item;
-      }
-    });
-
-    if (!productAlreadyInCart) {
-      newCart.push({ id: product.id, quantity: 1 });
-    }
-
-    setCart(newCart);
-  }
-
   return (
     <>
       <nav>
-        <div className="navbar">
+        <div className="wrapper">
           <ul>
             <li>
-              <Link to={`/`}>ThriftShop</Link>
+              <Link to={`/`}>SweetDealz</Link>
             </li>
             <li>
               <Link to={`/products`}>Products</Link>
@@ -37,23 +18,34 @@ export default function Root() {
           </ul>
 
           <Link to={"/cart"}>
-            <button className="cartButton">
-              {/* {cart.length > 0 && (
-              <div className="tooltip">
-                {cart.reduce(
-                  (numOfItems, item) => numOfItems + item.quantity,
-                  0
-                )}
-              </div>
-            )} */}
-            </button>
+            <div className="cart">
+              {cart.length > 0 && (
+                <div className="tooltip">
+                  {/* {cart.reduce(
+                    (numOfItems, item) => numOfItems + item.quantity,
+                    0
+                  )} */}
+                  {cart.length}
+                </div>
+              )}
+            </div>
           </Link>
         </div>
       </nav>
       <main>
-        <Outlet context={{ cart, addToCart }} />
+        <div className="wrapper">
+          <Outlet context={{ cart, setCart }} />
+        </div>
       </main>
-      <footer></footer>
+      <footer>
+        <div className="wrapper">
+          Dummy products were fetched from{" "}
+          <a href="https://fakestoreapi.com/" target="_blank">
+            FakeStoreAPI
+          </a>
+          .
+        </div>
+      </footer>
     </>
   );
 }

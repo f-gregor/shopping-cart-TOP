@@ -1,3 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+:root {
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -8,52 +16,95 @@ button {
   border: 0;
 }
 
-#root,
-nav {
-  display: grid;
-  grid-template-columns: 1fr 1200px 1fr;
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
 }
 
-.navbar {
+#root > * {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.wrapper {
+  width: 1200px;
+}
+
+nav .wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.navbar > ul {
+nav {
+  position: fixed;
+  box-shadow: 2px 2px 4px hsl(0, 0%, 0%, 0.3);
+}
+
+nav ul {
   display: flex;
   gap: 20px;
   list-style: none;
 }
 
+main {
+  margin-top: 100px;
+  flex: 1;
+}
+
 nav,
 footer {
-  grid-column: 1 / 4;
-  background-color: hsl(0deg, 0%, 90%);
+  padding: 10px 0px;
 }
 
-main,
-.navbar {
-  grid-column: 2;
+footer {
+  text-align: center;
 }
 
-.cartButton {
+main .wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cart {
   position: relative;
   height: 36px;
   width: 36px;
   background-image: url("./assets/shopping-cart.svg");
   background-size: 100% 100%;
-  background-color: inherit;
 }
 
 .tooltip {
-  background-color: blue;
-  color: white;
   position: absolute;
-  right: 0;
-  bottom: 0;
+  right: -5px;
+  top: -5px;
+  background-color: hsl(281, 70%, 50%);
+  color: white;
   font-weight: 700;
-  height: 1rem;
-  width: 1rem;
+  height: 20px;
+  width: 20px;
   border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav,
+footer {
+  background-color: hsl(165, 5%, 95%);
+}
+
+a {
+  font-weight: 700;
+  text-decoration: none;
+  color: hsl(281, 10%, 10%);
+}
+
+a:hover {
+  color: hsl(281, 70%, 30%);
+  text-decoration: underline 2px solid;
 }
